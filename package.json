@@ -1,0 +1,29 @@
+{
+  "name": "jasontavares-com",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "emulators:start": "firebase emulators:start",
+    "build": "next build",
+    "lint": "eslint .",
+    "test:e2e": "playwright test"
+  },
+  "dependencies": {
+    "next": "16.3.4",
+    "react": "19.2.8",
+    "react-dom": "19.2.8"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.62.1",
+    "@tailwindcss/postcss": "4.3.3",
+    "@types/node": "^24.0.0",
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
+    "eslint": "^9.0.0",
+    "eslint-config-next": "16.3.4",
+    "firebase-tools": "^15.29.0",
+    "tailwindcss": "4.3.3",
+    "typescript": "5.9.3"
+  }
+}

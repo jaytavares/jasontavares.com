@@ -1,17 +1,19 @@
 # jasontavares.com
 
-The source for Jay Tavares's personal website: a static Next.js portfolio focused on backend and cloud engineering work.
+This is the source for my personal website. It's a static Next.js portfolio focused on my backend and cloud engineering work. You're welcome to use anything you find here, although it's all here in the spirit of transparancy since development is what I do. If you're interested in hiring me for a development project, [reach out via my website](https://jasontavares.com).
 
 ## Stack
 
-- Next.js and TypeScript
+- Next.js
+- TypeScript
 - Tailwind CSS
-- Static export
-- Firebase Hosting configuration
-- Playwright smoke tests
+- Firebase
+- Playwright
 - GitHub Actions CI
 
 ## Local development
+
+A few notes to jog my memory should I forget things...
 
 ```bash
 npm install
@@ -20,7 +22,19 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000).
 
-## Validate the production build
+The Firebase App Hosting emulator uses [http://localhost:5002](http://localhost:5002)
+because macOS Control Center reserves port 5000 on this machine. Start the
+Firebase emulators with:
+
+```bash
+npm run emulators:start
+```
+
+To enable the historical benchmark callable locally and in App Hosting, provide
+the Firebase web app values from the Firebase console in `.env.local` using the
+names in `.env.example`.
+
+## Tests and validation
 
 ```bash
 npm run lint
@@ -29,24 +43,18 @@ npx playwright install chromium
 npm run test:e2e
 ```
 
-The static site is generated in `out/`.
+## Deployment
 
-## Firebase deployment
-
-Connect this repository to a Firebase project before the first deployment:
+Connect this repository to Firebase App Hosting and deploy:
 
 ```bash
-npx firebase-tools login
-npx firebase-tools use --add
-npm run build
-npx firebase-tools deploy --only hosting
+firebase login
+firebase use --add
+firebase deploy --only apphosting
 ```
 
-Do not commit `.firebaserc` until the intended Firebase project ID has been reviewed.
+Deploy the callable function alongside App Hosting with:
 
-## Content principles
-
-- Attribute only Jay's own work and contributions.
-- Base project date ranges on Jay's actual contribution dates.
-- Keep client-confidential implementation details out of public copy.
-- Treat TypeScript, Node.js, Firebase, GCP, and Temporal as the current stack without artificially separating every other technology into an "old" category.
+```bash
+firebase deploy --only functions,apphosting
+```

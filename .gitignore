@@ -1,0 +1,29 @@
+# dependencies
+/node_modules
+/functions/node_modules
+/functions/lib
+
+# Next.js
+/.next/
+/out/
+
+# testing
+/playwright-report/
+/test-results/
+
+# local configuration
+.env*
+!.env.example
+.firebase/
+.firebaserc
+firebase-debug.log*
+.agents/
+.claude/
+.vscode/mcp.json
+
+# editor and OS files
+.DS_Store
+*.pem
+
+# TypeScript
+*.tsbuildinfo
