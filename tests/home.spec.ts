@@ -1,5 +1,20 @@
 import { expect, test } from "@playwright/test";
 
+test("keeps the hero focused on the introduction without a decorative panel", async ({ page }) => {
+  await page.goto("/");
+  await expect(page.locator(".hero > *")).toHaveCount(1);
+  await expect(page.locator(".system-card")).toHaveCount(0);
+  await expect(page.locator(".hero + .current-band")).toBeVisible();
+  const dimensions = await page.evaluate(() => ({
+    pageWidth: document.documentElement.scrollWidth,
+    viewportWidth: window.innerWidth,
+    heroWidth: document.querySelector(".hero")!.getBoundingClientRect().width,
+    copyWidth: document.querySelector(".hero-copy")!.getBoundingClientRect().width,
+  }));
+  expect(dimensions.pageWidth).toBeLessThanOrEqual(dimensions.viewportWidth);
+  expect(dimensions.copyWidth).toBeCloseTo(dimensions.heroWidth, 0);
+});
+
 test("presents Jay's profile and primary contact path", async ({ page }) => {
   await page.goto("/");
 

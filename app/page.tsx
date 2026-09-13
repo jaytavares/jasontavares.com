@@ -149,45 +149,6 @@ export default function Home() {
             </a>
           </div>
         </div>
-
-        <div
-          className="system-card"
-          aria-label="The kind of engineering work I enjoy"
-        >
-          <div className="system-card__head">
-            <span>system / production</span>
-            <span className="status">
-              <i /> healthy
-            </span>
-          </div>
-          <div className="system-flow" aria-hidden="true">
-            <div className="flow-node">
-              <small>01</small>Product idea
-            </div>
-            <span>→</span>
-            <div className="flow-node active">
-              <small>02</small>Backend
-            </div>
-            <span>→</span>
-            <div className="flow-node">
-              <small>03</small>Reliable service
-            </div>
-          </div>
-          <div className="system-card__log">
-            <p>
-              <span>14:22:04</span> edge case reproduced
-            </p>
-            <p>
-              <span>14:37:19</span> observability improved
-            </p>
-            <p>
-              <span>15:03:42</span> boring fix deployed
-            </p>
-          </div>
-          <p className="system-card__note">
-            The best infrastructure eventually becomes unremarkable.
-          </p>
-        </div>
       </section>
 
       <section className="current-band" aria-labelledby="current-heading">
