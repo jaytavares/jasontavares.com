@@ -45,8 +45,9 @@ test("shows one reloadable historical benchmark", async ({ page }) => {
   await expect(benchmarkTrigger).toContainText("I live in a house older than");
   await expect(benchmarkTrigger).toHaveAttribute(
     "aria-label",
-    /Load another historical benchmark:/,
+    /Show another comparison\. Current comparison:/,
   );
   await expect(page.locator(".benchmark-year")).toHaveText(/.+/);
+  await expect(page.locator(".benchmark-year")).toHaveCSS("position", "static");
   await expect(page.getByText("A world taking shape")).toHaveCount(0);
 });

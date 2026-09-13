@@ -399,7 +399,6 @@ h3 {
   cursor: pointer;
 }
 .benchmark-value {
-  position: relative;
   color: #8a651e;
   text-decoration: underline;
   text-decoration-color: rgba(138, 101, 30, 0.4);
@@ -407,41 +406,18 @@ h3 {
   text-underline-offset: 0.12em;
 }
 .benchmark-year {
-  position: absolute;
-  bottom: calc(100% + 0.45rem);
-  left: 50%;
-  z-index: 1;
-  width: max-content;
-  max-width: min(15rem, 80vw);
-  padding: 0.4rem 0.7rem;
-  background: var(--ink);
-  color: #eef3f5;
+  display: inline-block;
+  margin-left: 0.45em;
+  padding: 0.18em 0.4em;
+  border: 1px solid rgba(138, 101, 30, 0.35);
+  color: #6f521d;
   font:
-    500 1.3rem/1 var(--font-mono),
+    500 0.32em/1 var(--font-mono),
     monospace;
   letter-spacing: 0.08em;
   text-decoration: none;
   white-space: nowrap;
-  opacity: 0;
-  pointer-events: none;
-  transform: translate(-50%, 0.35rem);
-  transition:
-    opacity 0.2s ease,
-    transform 0.2s ease;
-}
-.benchmark-year::after {
-  content: "";
-  position: absolute;
-  top: 100%;
-  left: 50%;
-  border: 0.3rem solid transparent;
-  border-top-color: var(--ink);
-  transform: translateX(-50%);
-}
-.benchmark-trigger:hover .benchmark-year,
-.benchmark-trigger:focus-visible .benchmark-year {
-  opacity: 1;
-  transform: translate(-50%, 0);
+  vertical-align: 0.32em;
 }
 .benchmark-trigger:hover .benchmark-value {
   color: #5f4516;

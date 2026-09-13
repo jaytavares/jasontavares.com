@@ -40,16 +40,16 @@ export default function HistoricalBenchmark() {
       onClick={() => benchmark && void loadBenchmark(benchmark.name)}
       aria-label={
         benchmark
-          ? `Load another historical benchmark: ${benchmark.name}, ${benchmark.year}`
+          ? `Show another comparison. Current comparison: ${benchmark.name}, ${benchmark.year}`
           : "Loading historical benchmark"
       }
       aria-busy={isLoading}
       disabled={!benchmark}
     >
       <span>I live in a house older than </span>
-      <span className="benchmark-value">
+      <span className="benchmark-value" aria-live="polite" aria-atomic="true">
         {benchmark?.name ?? "\u00A0"}
-        <span className="benchmark-year" aria-hidden="true">
+        <span className="benchmark-year">
           {benchmark?.year ?? ""}
         </span>
       </span>
