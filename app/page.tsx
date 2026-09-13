@@ -95,6 +95,9 @@ const personSchema = {
   knowsAbout: currentStack,
 };
 
+const houseBuiltYear = 1891;
+const houseAge = new Date().getFullYear() - houseBuiltYear;
+
 function ArrowIcon() {
   return (
     <svg aria-hidden="true" viewBox="0 0 20 20" fill="none">
@@ -255,19 +258,10 @@ export default function Home() {
             </h2>
             <div className="about-me-copy">
               <p>
-                I live on the West Side of Providence with my wife and daughter
-                in a Victorian house built in 1891. In my spare time, you&apos;ll
-                usually find me fixing or improving something around the house,
-                tinkering with electronics, or working on one of the projects I
-                always seem to have going.
-              </p>
-              <p>
-                I&apos;ve always liked figuring out how things work—software,
-                circuits, old houses, whatever. That curiosity probably
-                explains why I&apos;ve become so interested in the house&apos;s original
-                hardware. If you want to get me going, ask me about my
-                doorknobs. There is much more to say about them than you might
-                expect.
+                I live on the West Side of Providence with my wife and daughter.
+                In my spare time, you&apos;ll find me working away on my house
+                which is currently {houseAge} years old. If you want to get me
+                going, ask about the doorknobs in my house.
               </p>
             </div>
           </div>

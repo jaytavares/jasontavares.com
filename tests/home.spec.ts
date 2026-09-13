@@ -52,7 +52,7 @@ test("shows one reloadable historical benchmark", async ({ page }) => {
   await expect(page.getByText("A world taking shape")).toHaveCount(0);
 });
 
-test("includes Jay's family photo and expanded about copy", async ({ page }) => {
+test("includes Jay's family photo without changing the about copy", async ({ page }) => {
   await page.goto("/");
 
   const aboutMe = page.locator(".about-me-section");
@@ -61,7 +61,9 @@ test("includes Jay's family photo and expanded about copy", async ({ page }) => 
       name: "Jay Tavares with his wife and daughter on a mountain hike",
     }),
   ).toBeVisible();
-  await expect(aboutMe).toContainText("Victorian house built in 1891");
-  await expect(aboutMe).toContainText("tinkering with electronics");
-  await expect(aboutMe).toContainText("ask me about my doorknobs");
+  await expect(aboutMe).toContainText(
+    "I live on the West Side of Providence with my wife and daughter.",
+  );
+  await expect(aboutMe).toContainText("working away on my house");
+  await expect(aboutMe).toContainText("ask about the doorknobs in my house");
 });
