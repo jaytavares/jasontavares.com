@@ -51,3 +51,17 @@ test("shows one reloadable historical benchmark", async ({ page }) => {
   await expect(page.locator(".benchmark-year")).toHaveCSS("position", "static");
   await expect(page.getByText("A world taking shape")).toHaveCount(0);
 });
+
+test("includes Jay's family photo and expanded about copy", async ({ page }) => {
+  await page.goto("/");
+
+  const aboutMe = page.locator(".about-me-section");
+  await expect(
+    aboutMe.getByRole("img", {
+      name: "Jay Tavares with his wife and daughter on a mountain hike",
+    }),
+  ).toBeVisible();
+  await expect(aboutMe).toContainText("Victorian house built in 1891");
+  await expect(aboutMe).toContainText("tinkering with electronics");
+  await expect(aboutMe).toContainText("ask me about my doorknobs");
+});

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import HistoricalBenchmark from "./historical-benchmark";
 
 const currentStack = [
@@ -93,9 +94,6 @@ const personSchema = {
   ],
   knowsAbout: currentStack,
 };
-
-const houseBuiltYear = 1891;
-const houseAge = new Date().getFullYear() - houseBuiltYear;
 
 function ArrowIcon() {
   return (
@@ -241,20 +239,37 @@ export default function Home() {
         aria-labelledby="about-me-title"
       >
         <div className="shell about-me-grid">
-          <p className="about-me-label" aria-label="About me">
-            About Me
-          </p>
-          <div>
+          <figure className="about-me-photo">
+            <Image
+              src="/about-family.jpeg"
+              alt="Jay Tavares with his wife and daughter on a mountain hike"
+              width={1536}
+              height={1154}
+              sizes="(max-width: 900px) calc(100vw - 28px), 46vw"
+            />
+          </figure>
+          <div className="about-me-content">
             <p className="kicker">Off the clock</p>
             <h2 id="about-me-title">
               <HistoricalBenchmark />
             </h2>
-            <p>
-              I live on the West Side of Providence with my wife and daughter.
-              In my spare time, you&apos;ll find me working away on my house
-              which is currently {houseAge} years old. If you want to get me
-              going, ask about the doorknobs in my house.
-            </p>
+            <div className="about-me-copy">
+              <p>
+                I live on the West Side of Providence with my wife and daughter
+                in a Victorian house built in 1891. In my spare time, you&apos;ll
+                usually find me fixing or improving something around the house,
+                tinkering with electronics, or working on one of the projects I
+                always seem to have going.
+              </p>
+              <p>
+                I&apos;ve always liked figuring out how things work—software,
+                circuits, old houses, whatever. That curiosity probably
+                explains why I&apos;ve become so interested in the house&apos;s original
+                hardware. If you want to get me going, ask me about my
+                doorknobs. There is much more to say about them than you might
+                expect.
+              </p>
+            </div>
           </div>
         </div>
       </section>
