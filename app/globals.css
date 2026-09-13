@@ -360,6 +360,15 @@ h3 {
   background: var(--paper-deep);
   color: var(--ink);
 }
+.about-me-label {
+  margin: 0 0 clamp(3.5rem, 7vw, 6rem);
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(7, 21, 34, 0.3);
+  font:
+    500 clamp(6rem, 15vw, 12rem)/0.8 var(--font-serif),
+    serif;
+  letter-spacing: -0.08em;
+}
 .about-me-grid {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);

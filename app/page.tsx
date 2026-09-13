@@ -241,28 +241,33 @@ export default function Home() {
         className="section about-me-section"
         aria-labelledby="about-me-title"
       >
-        <div className="shell about-me-grid">
-          <figure className="about-me-photo">
-            <Image
-              src="/about-family.jpeg"
-              alt="Jay Tavares with his wife and daughter on a mountain hike"
-              width={1536}
-              height={1154}
-              sizes="(max-width: 900px) calc(100vw - 28px), 46vw"
-            />
-          </figure>
-          <div className="about-me-content">
-            <p className="kicker">Off the clock</p>
-            <h2 id="about-me-title">
-              <HistoricalBenchmark />
-            </h2>
-            <div className="about-me-copy">
-              <p>
-                I live on the West Side of Providence with my wife and daughter.
-                In my spare time, you&apos;ll find me working away on my house
-                which is currently {houseAge} years old. If you want to get me
-                going, ask about the doorknobs in my house.
-              </p>
+        <div className="shell">
+          <p className="about-me-label" aria-label="About me">
+            About Me
+          </p>
+          <div className="about-me-grid">
+            <figure className="about-me-photo">
+              <Image
+                src="/about-family.jpeg"
+                alt="Jay Tavares with his wife and daughter on a mountain hike"
+                width={1536}
+                height={1154}
+                sizes="(max-width: 900px) calc(100vw - 28px), 46vw"
+              />
+            </figure>
+            <div className="about-me-content">
+              <p className="kicker">Off the clock</p>
+              <h2 id="about-me-title">
+                <HistoricalBenchmark />
+              </h2>
+              <div className="about-me-copy">
+                <p>
+                  I live on the West Side of Providence with my wife and
+                  daughter. In my spare time, you&apos;ll find me working away on
+                  my house which is currently {houseAge} years old. If you want
+                  to get me going, ask about the doorknobs in my house.
+                </p>
+              </div>
             </div>
           </div>
         </div>

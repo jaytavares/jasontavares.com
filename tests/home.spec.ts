@@ -56,6 +56,7 @@ test("includes Jay's family photo without changing the about copy", async ({ pag
   await page.goto("/");
 
   const aboutMe = page.locator(".about-me-section");
+  await expect(aboutMe.getByText("About Me", { exact: true })).toBeVisible();
   await expect(
     aboutMe.getByRole("img", {
       name: "Jay Tavares with his wife and daughter on a mountain hike",
