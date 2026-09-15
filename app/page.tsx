@@ -201,6 +201,11 @@ export default function Home() {
               I care less about collecting technologies than about understanding
               where each one earns its place.
             </p>
+            <p>
+              I use AI tools to work faster, explore more possibilities, and
+              spend less time on repetitive code—while remaining accountable
+              for every technical decision and everything that ships.
+            </p>
             <ul className="toolkit">
               {broaderToolkit.map((item) => (
                 <li key={item}>{item}</li>
