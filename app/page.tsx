@@ -267,6 +267,11 @@ export default function Home() {
                   my house which is currently {houseAge} years old. If you want
                   to get me going, ask about the doorknobs in my house.
                 </p>
+                <p>
+                  When I&apos;m not writing software or working on the house, I
+                  help run a waterfront vacation rental and look for ways to
+                  make its day-to-day operations run a little more smoothly.
+                </p>
               </div>
             </div>
           </div>
