@@ -269,8 +269,7 @@ export default function Home() {
                 <p>
                   I live on the West Side of Providence with my wife and
                   daughter. In my spare time, you&apos;ll find me working away on
-                  my house which is currently {houseAge} years old. If you want
-                  to get me going, ask about the doorknobs in my house.
+                  my house which is currently {houseAge} years old.
                 </p>
                 <p>
                   When I&apos;m not writing software or working on the house, I
