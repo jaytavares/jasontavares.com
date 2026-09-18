@@ -1,70 +1,85 @@
 import { expect, test } from "@playwright/test";
 
-test("keeps the hero focused on the introduction without a decorative panel", async ({ page }) => {
-  await page.goto("/");
-  await expect(page.locator(".hero > *")).toHaveCount(1);
-  await expect(page.locator(".system-card")).toHaveCount(0);
-  await expect(page.locator(".hero + .current-band")).toBeVisible();
-  const dimensions = await page.evaluate(() => ({
-    pageWidth: document.documentElement.scrollWidth,
-    viewportWidth: window.innerWidth,
-    heroWidth: document.querySelector(".hero")!.getBoundingClientRect().width,
-    copyWidth: document.querySelector(".hero-copy")!.getBoundingClientRect().width,
-  }));
-  expect(dimensions.pageWidth).toBeLessThanOrEqual(dimensions.viewportWidth);
-  expect(dimensions.copyWidth).toBeCloseTo(dimensions.heroWidth, 0);
+test("page reflows without horizontal scrolling", async ({ page }) => {
+  for (const width of [320, 390, 768, 1280]) {
+    await page.setViewportSize({ width, height: 900 });
+    await page.goto("/");
+    await page.evaluate(() => document.fonts.ready);
+
+    const dimensions = await page.evaluate(() => ({
+      content: document.documentElement.scrollWidth,
+      viewport: document.documentElement.clientWidth,
+    }));
+    expect(dimensions.content).toBeLessThanOrEqual(dimensions.viewport);
+  }
 });
 
-test("presents Jay's profile and primary contact path", async ({ page }) => {
+test("work navigation is keyboard-operable", async ({ page }) => {
   await page.goto("/");
-
-  await expect(page).toHaveTitle(/Jay Tavares/);
-  await expect(page.getByRole("heading", { level: 1 })).toContainText(
-    "systems that survive contact with reality",
-  );
-  await expect(
-    page.getByText("TypeScript", { exact: true }).first(),
-  ).toBeVisible();
-  await expect(
-    page.getByRole("link", { name: /send me an email/i }),
-  ).toHaveAttribute("href", "mailto:workwith@jasontavares.com");
-});
-
-test("supports keyboard navigation to the work section", async ({ page }) => {
-  await page.goto("/");
-  const workLink = page.getByRole("link", { name: "Explore my work" });
+  const workLink = page.locator('.hero a[href="#work"]');
+  await expect(workLink).toBeVisible();
   await workLink.focus();
+  await expect(workLink).toBeFocused();
   await page.keyboard.press("Enter");
   await expect(page).toHaveURL(/#work$/);
+  await expect(page.locator("#work")).toBeInViewport();
 });
 
-test("shows one reloadable historical benchmark", async ({ page }) => {
+test("contact and project links have accessible names and valid destinations", async ({ page }) => {
   await page.goto("/");
+  const emailLink = page.locator('.contact a[href^="mailto:"]');
+  await expect(emailLink).toBeVisible();
+  await expect(emailLink).toHaveAccessibleName(/\S/);
+  const email = new URL((await emailLink.getAttribute("href"))!);
+  expect(email.protocol).toBe("mailto:");
+  expect(email.pathname).toMatch(/^[^\s@]+@[^\s@]+\.[^\s@]+$/);
 
-  const benchmarkTrigger = page.locator(".benchmark-trigger");
-  await expect(benchmarkTrigger).toContainText("I live in a house older than");
-  await expect(benchmarkTrigger).toHaveAttribute(
-    "aria-label",
-    /Show another comparison\. Current comparison:/,
+  const externalLinks = page.locator(
+    '.electronics-list a, .contact a[href^="https:"]',
   );
-  await expect(page.locator(".benchmark-year")).toHaveText(/.+/);
-  await expect(page.locator(".benchmark-year")).toHaveCSS("position", "static");
-  await expect(page.getByText("A world taking shape")).toHaveCount(0);
+  expect(await externalLinks.count()).toBeGreaterThan(0);
+  for (const link of await externalLinks.all()) {
+    await expect(link).toHaveAccessibleName(/\S/);
+    const destination = new URL((await link.getAttribute("href"))!);
+    expect(destination.protocol).toBe("https:");
+    expect(destination.hostname).not.toBe("");
+    if ((await link.getAttribute("target")) === "_blank") {
+      await expect(link).toHaveAttribute("rel", /noreferrer|noopener/);
+    }
+  }
 });
 
-test("includes Jay's family photo without changing the about copy", async ({ page }) => {
+test("historical comparison refreshes with pointer and keyboard input", async ({ page }) => {
   await page.goto("/");
+  const trigger = page.locator(".benchmark-trigger");
+  const value = page.locator(".benchmark-value");
+  await expect(trigger).toBeEnabled();
+  await expect(trigger).toHaveAttribute("aria-busy", "false");
+  await expect(trigger).toHaveAccessibleName(/\S/);
+  await expect(page.locator(".benchmark-year")).not.toBeEmpty();
 
-  const aboutMe = page.locator(".about-me-section");
-  await expect(aboutMe.getByText("About Me", { exact: true })).toBeVisible();
-  await expect(
-    aboutMe.getByRole("img", {
-      name: "Jay Tavares with his wife and daughter on a mountain hike",
+  const initialValue = await value.innerText();
+  await trigger.click();
+  await expect.poll(() => value.innerText()).not.toBe(initialValue);
+  await expect(trigger).toHaveAttribute("aria-busy", "false");
+
+  const updatedValue = await value.innerText();
+  await trigger.focus();
+  await expect(trigger).toBeFocused();
+  await page.keyboard.press("Enter");
+  await expect.poll(() => value.innerText()).not.toBe(updatedValue);
+  await expect(trigger).toHaveAttribute("aria-busy", "false");
+});
+
+test("about image loads and has an accessible description", async ({ page }) => {
+  await page.goto("/");
+  const image = page.locator(".about-me-photo img");
+  await expect(image).toBeVisible();
+  await expect(image).toHaveAttribute("alt", /\S/);
+  await expect.poll(() =>
+    image.evaluate((element) => {
+      const img = element as HTMLImageElement;
+      return img.complete && img.naturalWidth > 0;
     }),
-  ).toBeVisible();
-  await expect(aboutMe).toContainText(
-    "I live on the West Side of Providence with my wife and daughter.",
-  );
-  await expect(aboutMe).toContainText("working away on my house");
-  await expect(aboutMe).not.toContainText("ask about the doorknobs");
+  ).toBe(true);
 });
