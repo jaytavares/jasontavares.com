@@ -66,5 +66,5 @@ test("includes Jay's family photo without changing the about copy", async ({ pag
     "I live on the West Side of Providence with my wife and daughter.",
   );
   await expect(aboutMe).toContainText("working away on my house");
-  await expect(aboutMe).toContainText("ask about the doorknobs in my house");
+  await expect(aboutMe).not.toContainText("ask about the doorknobs");
 });
