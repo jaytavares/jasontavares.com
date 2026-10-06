@@ -30,32 +30,39 @@ const broaderToolkit = [
 
 const systems = [
   {
-    eyebrow: "Platform engineering",
-    title: "Multi-tenant SaaS foundations",
+    eyebrow: "CurioVision Financial",
+    title: "Subscription and customer lifecycle platform",
     description:
-      "Backend architecture spanning identity, authorization, subscriptions, entitlements, external integrations, and production operations.",
+      "Backend architecture spanning identity, authorization, Stripe subscriptions, customer entitlements, external integrations, and production operations.",
     technologies: ["TypeScript", "Node.js", "Firebase", "Stripe", "GCP"],
   },
   {
-    eyebrow: "Data engineering",
-    title: "From messy inputs to useful data",
+    eyebrow: "CurioVision Financial",
+    title: "Financial data ingestion and reporting",
     description:
-      "Ingestion and reporting pipelines that turn emailed spreadsheets and third-party APIs into governed, testable warehouse data.",
+      "Pipelines that transformed emailed spreadsheets and third-party accounting data into governed, testable reporting models in BigQuery.",
     technologies: ["Cloud Storage", "Airbyte", "BigQuery", "dbt"],
   },
   {
-    eyebrow: "Backend systems",
-    title: "Real-estate listings API",
+    eyebrow: "MultifamilyProperties.com",
+    title: "Listings API and synchronization platform",
     description:
-      "A documented, tested platform for listings synchronization, authentication, saved searches, and production delivery on Kubernetes.",
+      "A documented, thoroughly tested Django REST backend for listing synchronization, authentication, saved searches, notifications, and production delivery on Kubernetes.",
     technologies: ["Python", "Django REST Framework", "PostgreSQL", "GKE"],
   },
   {
-    eyebrow: "Developer experience",
-    title: "Tooling that removes friction",
+    eyebrow: "Coolidge Corner Theatre",
+    title: "Showtime scheduling system",
     description:
-      "Monorepo boundaries, CI pipelines, release automation, typed integrations, and open-source improvements for Nx and Node.js workflows.",
-    technologies: ["Nx", "GitHub Actions", "CircleCI", "npm"],
+      "A Laravel and PostgreSQL application for coordinating film schedules, managing theatre operations, and publishing updates in real time.",
+    technologies: ["PHP", "Laravel", "PostgreSQL", "Pusher"],
+  },
+  {
+    eyebrow: "Veterinary Association Platform",
+    title: "Membership and website platform",
+    description:
+      "A reusable Drupal and Aegir platform for veterinary medical associations, supporting membership services, content publishing, and repeatable site provisioning.",
+    technologies: ["PHP", "Drupal", "Aegir", "MySQL"],
   },
 ];
 
