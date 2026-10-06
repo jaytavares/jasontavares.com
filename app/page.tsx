@@ -273,10 +273,10 @@ export default function Home() {
           <div className="about-me-grid">
             <figure className="about-me-photo">
               <Image
-                src="/about-family.jpeg"
-                alt="Jay Tavares with his wife and daughter on a mountain hike"
-                width={1536}
-                height={1154}
+                src="/about-jay.jpeg"
+                alt="Jay Tavares sitting on a park bench on a sunny day"
+                width={1152}
+                height={1536}
                 sizes="(max-width: 900px) calc(100vw - 28px), 46vw"
               />
             </figure>
