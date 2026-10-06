@@ -272,6 +272,9 @@ h3 {
   border-bottom: 1px solid var(--line);
   overflow: hidden;
 }
+.work-card:nth-last-child(1):nth-child(odd) {
+  grid-column: 1 / -1;
+}
 .work-card__number {
   position: absolute;
   top: 1.2rem;
@@ -575,6 +578,9 @@ h3 {
   }
   .work-card {
     min-height: 320px;
+  }
+  .work-card:nth-last-child(1):nth-child(odd) {
+    grid-column: auto;
   }
   .electronics-list a {
     grid-template-columns: 1fr;
