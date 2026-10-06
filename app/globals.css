@@ -342,6 +342,9 @@ h3 {
   padding: 2.2rem 1rem;
   border-bottom: 1px solid var(--line);
 }
+.electronics-list a.has-image {
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 420px) auto;
+}
 .electronics-list a:hover {
   background: rgba(13, 34, 51, 0.7);
 }
@@ -357,6 +360,24 @@ h3 {
   width: 30px;
   height: 30px;
   color: var(--brass-light);
+}
+.electronics-project-image {
+  margin: 0;
+  aspect-ratio: 3 / 2;
+  border: 1px solid rgba(239, 210, 140, 0.2);
+  overflow: hidden;
+}
+.electronics-project-image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 54%;
+  filter: brightness(1.08) saturate(0.92);
+  transition: transform 0.3s ease;
+}
+.electronics-list a:hover .electronics-project-image img {
+  transform: scale(1.02);
 }
 
 .about-me-section {
@@ -523,6 +544,21 @@ h3 {
   }
   .about-me-photo {
     box-shadow: -10px 10px 0 rgba(138, 101, 30, 0.12);
+  }
+  .electronics-list a.has-image {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+  .electronics-list a.has-image > div {
+    grid-column: 1;
+    grid-row: 1;
+  }
+  .electronics-list a.has-image > svg {
+    grid-column: 2;
+    grid-row: 1;
+  }
+  .electronics-project-image {
+    grid-column: 1 / -1;
+    grid-row: 2;
   }
 }
 

@@ -80,6 +80,7 @@ const electronicThings = [
       "A networked holiday-light installation that translated public Twitter commands into animated lighting programs.",
     detail: "Processing · Java · physical computing",
     href: "https://github.com/jaytavares/WestSideLights",
+    image: "/westsidelights-twitter.jpeg",
   },
 ];
 
@@ -233,6 +234,7 @@ export default function Home() {
         <div className="electronics-list">
           {electronicThings.map((project) => (
             <a
+              className={project.image ? "has-image" : undefined}
               href={project.href}
               key={project.name}
               target="_blank"
@@ -243,6 +245,17 @@ export default function Home() {
                 <h3>{project.name}</h3>
                 <p>{project.description}</p>
               </div>
+              {project.image ? (
+                <figure className="electronics-project-image">
+                  <Image
+                    src={project.image}
+                    alt=""
+                    width={1536}
+                    height={1152}
+                    sizes="(max-width: 900px) calc(100vw - 60px), 420px"
+                  />
+                </figure>
+              ) : null}
               <ArrowIcon />
             </a>
           ))}

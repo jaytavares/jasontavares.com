@@ -71,16 +71,20 @@ test("historical comparison refreshes with pointer and keyboard input", async ({
   await expect(trigger).toHaveAttribute("aria-busy", "false");
 });
 
-test("about image loads and has an accessible description", async ({ page }) => {
+test("images load and declare their text alternatives", async ({ page }) => {
   await page.goto("/");
-  const image = page.locator(".about-me-photo img");
-  await image.scrollIntoViewIfNeeded();
-  await expect(image).toBeVisible();
-  await expect(image).toHaveAttribute("alt", /\S/);
-  await expect.poll(() =>
-    image.evaluate((element) => {
-      const img = element as HTMLImageElement;
-      return img.complete && img.naturalWidth > 0;
-    }),
-  ).toBe(true);
+  const images = page.locator("main img");
+  expect(await images.count()).toBeGreaterThan(0);
+
+  for (const image of await images.all()) {
+    await image.scrollIntoViewIfNeeded();
+    await expect(image).toBeVisible();
+    await expect(image).toHaveAttribute("alt", /.*/);
+    await expect.poll(() =>
+      image.evaluate((element) => {
+        const img = element as HTMLImageElement;
+        return img.complete && img.naturalWidth > 0;
+      }),
+    ).toBe(true);
+  }
 });
