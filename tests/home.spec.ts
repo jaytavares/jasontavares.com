@@ -74,6 +74,7 @@ test("historical comparison refreshes with pointer and keyboard input", async ({
 test("about image loads and has an accessible description", async ({ page }) => {
   await page.goto("/");
   const image = page.locator(".about-me-photo img");
+  await image.scrollIntoViewIfNeeded();
   await expect(image).toBeVisible();
   await expect(image).toHaveAttribute("alt", /\S/);
   await expect.poll(() =>
