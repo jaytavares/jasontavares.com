@@ -192,9 +192,11 @@ h3 {
   flex: 0 0 auto;
   transition: transform 0.2s ease;
 }
-.primary-action:hover svg,
-.electronics-list a:hover svg {
+.primary-action:hover svg {
   transform: translateX(4px);
+}
+.electronics-list a:hover svg {
+  transform: translate(2px, -2px);
 }
 .text-action {
   color: #c9d4da;
@@ -621,12 +623,6 @@ h3 {
   .electronics-list a {
     grid-template-columns: 1fr;
     gap: 1.5rem;
-  }
-  .electronics-list svg {
-    transform: rotate(90deg);
-  }
-  .electronics-list a:hover svg {
-    transform: rotate(90deg) translateX(4px);
   }
   .about-me-label {
     font-size: 7rem;

@@ -115,6 +115,20 @@ function ArrowIcon() {
   );
 }
 
+function ExternalLinkIcon() {
+  return (
+    <svg aria-hidden="true" viewBox="0 0 24 24" fill="none">
+      <path
+        d="M14 5h5v5M19 5l-9 9M18 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
 export default function Home() {
   return (
     <main>
@@ -257,7 +271,7 @@ export default function Home() {
                   />
                 </figure>
               ) : null}
-              <ArrowIcon />
+              <ExternalLinkIcon />
             </a>
           ))}
         </div>
