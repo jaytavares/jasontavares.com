@@ -71,7 +71,7 @@ const electronicThings = [
     name: "Cinesense",
     description:
       "A tiny hardware adapter that automatically controls Bose Cinemate speakers by sensing an audio signal.",
-    detail: "ATtiny85 · C++ · product design",
+    detail: "ATtiny85 · C++ · product\u00a0design",
     href: "https://github.com/jaytavares/cinesense",
     image: "/cinesense-board.webp",
   },
