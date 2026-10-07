@@ -255,9 +255,12 @@ export default function Home() {
               target="_blank"
               rel="noreferrer"
             >
-              <div>
+              <div className="electronics-project-copy">
                 <p className="eyebrow">{project.detail}</p>
-                <h3>{project.name}</h3>
+                <div className="electronics-project-title">
+                  <h3>{project.name}</h3>
+                  <ExternalLinkIcon />
+                </div>
                 <p>{project.description}</p>
               </div>
               {project.image ? (
@@ -271,7 +274,6 @@ export default function Home() {
                   />
                 </figure>
               ) : null}
-              <ExternalLinkIcon />
             </a>
           ))}
         </div>

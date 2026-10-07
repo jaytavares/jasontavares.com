@@ -339,14 +339,23 @@ h3 {
   position: relative;
   min-height: 190px;
   display: grid;
-  grid-template-columns: 1fr auto;
+  grid-template-columns: 1fr;
   align-items: center;
   gap: 3rem;
   padding: 2.2rem 1rem;
   border-bottom: 1px solid var(--line);
 }
 .electronics-list a.has-image {
-  grid-template-columns: minmax(0, 1fr) minmax(280px, 420px) auto;
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 420px);
+}
+.electronics-project-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.25rem;
+}
+.electronics-project-title svg {
+  flex: 0 0 30px;
 }
 .electronics-list a:hover {
   background: rgba(13, 34, 51, 0.7);
@@ -549,19 +558,7 @@ h3 {
     box-shadow: -10px 10px 0 rgba(138, 101, 30, 0.12);
   }
   .electronics-list a.has-image {
-    grid-template-columns: minmax(0, 1fr) auto;
-  }
-  .electronics-list a.has-image > div {
-    grid-column: 1;
-    grid-row: 1;
-  }
-  .electronics-list a.has-image > svg {
-    grid-column: 2;
-    grid-row: 1;
-  }
-  .electronics-project-image {
-    grid-column: 1 / -1;
-    grid-row: 2;
+    grid-template-columns: 1fr;
   }
 }
 
@@ -625,11 +622,6 @@ h3 {
   .electronics-list a.has-image {
     grid-template-columns: 1fr;
     gap: 1.5rem;
-  }
-  .electronics-list a.has-image > svg {
-    position: absolute;
-    top: 4.75rem;
-    right: 1rem;
   }
   .about-me-label {
     font-size: 7rem;
